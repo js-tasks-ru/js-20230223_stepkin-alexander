@@ -6,16 +6,18 @@
  * @param {string} [param="asc"] param - the sorting type "asc" or "desc"
  * @returns {string[]}
  */
- export function sortStrings(arr, param = 'asc') {
+export function sortStrings(arr, param = 'asc') {
 	
-	let collator = new Intl.Collator("ru", { caseFirst: "upper" });
+  const collator = new Intl.Collator("ru", { caseFirst: "upper" });
 	
-	const arrCopy = [...arr];
-	arrCopy.sort(collator.compare);
+  const arrCopy = [...arr];
 	
-	if (param === 'asc')
-		return arrCopy;
-	else if (param === 'desc')
-		return arrCopy.reverse()
+  if (param === 'asc') {
+    arrCopy.sort(collator.compare);
+  }
+  else if (param === 'desc') {
+    arrCopy.sort((x, y) => collator.compare(y, x));
+  }
+	
+  return arrCopy;    
 }
-
