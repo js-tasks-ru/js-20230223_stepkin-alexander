@@ -11,7 +11,7 @@ export function uniq(arr) {
 }
 
 
-console.log(uniq(['a', 'a', 'b', 'c', 'c'])); // [1, 2, 3, 4]
+//console.log(uniq(['a', 'a', 'b', 'c', 'c'])); // [1, 2, 3, 4]
 
 /*
 uniq([1, 2, 2, 3, 1, 4]); // [1, 2, 3, 4]

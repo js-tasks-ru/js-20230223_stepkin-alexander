@@ -53,7 +53,7 @@ export function trimSymbols(string, size) {
   return state.join("");
 }
 
-console.log(trimSymbols('eedaaad', 2));
+//console.log(trimSymbols('eedaaad', 2));
 //                         ^  
 //                      []  
 
