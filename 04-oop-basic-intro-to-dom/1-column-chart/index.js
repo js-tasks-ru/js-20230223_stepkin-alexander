@@ -64,7 +64,7 @@ export default class ColumnChart {
       this.element.classList.remove('column-chart_loading');
     }
 
-    this.subElements = this.getSubElements(this.element);
+    this.subElements = this.getSubElements();
   }
 
   getSubElements() {
