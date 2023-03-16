@@ -19,7 +19,6 @@ export default class SortableTable {
 				
 	  // default sort
 	  this.sort();
-	  this.updateArrow();
 		
 	  // start listen click
 	  this.onSort();
@@ -39,8 +38,9 @@ export default class SortableTable {
 	
 	// see headerConfig
 	getHeaderRow({id, title, sortable}) {
+				
 	  return `
-		<div class="sortable-table__cell" data-id="${id}" data-sortable="${sortable}">
+		<div class="sortable-table__cell" data-id="${id}" data-sortable="${sortable}" data-order="${id === this.sorted.id ? this.sorted.order : ""}">
 			<span>${title}</span>
 			<span data-element="arrow" class="sortable-table__sort-arrow">
 				<span class="sort-arrow"></span>
@@ -122,12 +122,8 @@ export default class SortableTable {
 	}
 	
 	update(data = []) {
-	  // if (!data.length) {
-	  //   this.element.classList.add("column-chart_loading");
-	  // }
 
 	  this.data = data;
-
 	  this.subElements.body.innerHTML = this.getTableBody(this.data);
 	}
 	
@@ -183,15 +179,13 @@ export default class SortableTable {
 	  // curent sorted column
 	  const curentCoumn = this.subElements.header.querySelector(`.sortable-table__cell[data-id="${this.sorted.id}"]`);
 		 //get current arrow
-	  let order = curentCoumn.dataset.order;		
+	  let order = this.sorted.order;		
 	  // clear all arrow
 	  dataElements.forEach(element => {
 	    element.dataset.order = '';
 	  });		
 	  // set new arrow
-	  if (!order) {
-	    curentCoumn.dataset.order = 'asc';
-	  } else if (order === 'asc') {
+	  if (order === 'asc') {
 	    curentCoumn.dataset.order = 'desc';
 	  } else if (order === 'desc') {
 	    curentCoumn.dataset.order = 'asc';
