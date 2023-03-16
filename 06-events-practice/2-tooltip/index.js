@@ -2,6 +2,16 @@
 class Tooltip {
 	element = '';
 	
+	static instance;
+	
+	constructor() {
+	  if (Tooltip.instance) {
+	    return Tooltip.instance;
+	  }
+		
+	  Tooltip.instance = this;
+	}
+	
 	initialize () {
 		
 	  document.addEventListener("pointerover", this.onOverHandler);
