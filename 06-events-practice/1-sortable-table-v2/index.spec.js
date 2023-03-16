@@ -90,7 +90,7 @@ describe('events-practice/sortable-table-v2', () => {
   it('should sort "desc" correctly for "sortType" equal string', () => {
     const { children } = sortableTable.subElements.header;
     const [title] = children;
-
+		
     const pointerdown = new MouseEvent('pointerdown', {
       bubbles: true
     });
@@ -100,7 +100,6 @@ describe('events-practice/sortable-table-v2', () => {
     const { body } = sortableTable.subElements;
     const firstRow = body.firstElementChild;
     const lastRow = body.lastElementChild;
-
     expect(firstRow).toHaveTextContent('Powerbank аккумулятор Hiper SP20000');
     expect(lastRow).toHaveTextContent('Детский велосипед Lexus Trike Racer Trike');
   });
