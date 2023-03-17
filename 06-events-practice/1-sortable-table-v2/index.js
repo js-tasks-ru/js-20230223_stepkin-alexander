@@ -178,6 +178,7 @@ export default class SortableTable {
 		
 	  // curent sorted column
 	  const curentCoumn = this.subElements.header.querySelector(`.sortable-table__cell[data-id="${this.sorted.id}"]`);
+		
 		 //get current arrow
 	  let order = this.sorted.order;		
 	  // clear all arrow
@@ -197,17 +198,28 @@ export default class SortableTable {
 	
 	
 	/**
-	 * 
+	 * listen clicks
 	 */
 	onSort() {				
 	  this.tableHeader.addEventListener('click', (event) => {
-	    if (event.target.tagName === 'SPAN') {				
-	      this.sorted.id = event.target.parentElement.dataset.id;
-				
-	    } 
-	    else if (event.target.className === 'sortable-table__cell') {
-	      this.sorted.id = event.target.dataset.id;
+	    if (!event.target.closest('.sortable-table__cell')) {
+	      event.preventDefault();
+	      return;
 	    }			
+	    
+	    const sortedCell = event.target.closest('.sortable-table__cell');
+			
+	    if (sortedCell.dataset.sortable === "false") {
+	      event.preventDefault();
+	      return;
+	    }
+			
+	    if (sortedCell.dataset.sortable) {
+	      this.sorted.id = sortedCell.dataset.id;
+	    } else {
+	      return;
+	    }
+	   
 	    // update arrow and this.sorted obj
 	    this.updateArrow();
 	    // call sorting
