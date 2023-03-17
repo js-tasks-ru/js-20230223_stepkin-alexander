@@ -201,7 +201,7 @@ export default class SortableTable {
 	 * listen clicks
 	 */
 	onSort() {				
-	  this.tableHeader.addEventListener('click', (event) => {
+	  this.tableHeader.addEventListener('pointerdown', (event) => {
 	    if (!event.target.closest('.sortable-table__cell')) {
 	      event.preventDefault();
 	      return;
@@ -214,6 +214,7 @@ export default class SortableTable {
 	      return;
 	    }
 			
+	    // cell clicked on
 	    if (sortedCell.dataset.sortable) {
 	      this.sorted.id = sortedCell.dataset.id;
 	    } else {
@@ -231,7 +232,7 @@ export default class SortableTable {
 	
 	
 	sortOnClient({id = this.sorted.id, order = this.sorted.order} = {}) {
-	  
+			  
 	  const sortType = this.getsortType();				
 	  let arrCopy = [...this.data]; 
 		
