@@ -36,6 +36,7 @@ class Tooltip {
 	  if (tooltipAttr) {
 	    this.tooltip = tooltipAttr;
 		 	this.remove();
+	    document.removeEventListener("pointermove", this.onMoveHandler);
 	  }
 	}
 
@@ -67,6 +68,10 @@ class Tooltip {
 	}
 
 	destroy() {
+	  document.removeEventListener("pointermove", this.onMoveHandler);
+	  document.removeEventListener("pointerover", this.onOverHandler);
+	  document.removeEventListener("pointerout", this.onOutHandler);
+
 	  this.remove();
 	  this.element = null;
 	}
