@@ -1,6 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 class Tooltip {
 	element = '';
+	tooltipName;
 	
 	static instance;
 	
@@ -16,7 +17,6 @@ class Tooltip {
 		
 	  document.addEventListener("pointerover", this.onOverHandler);
 	  document.addEventListener("pointerout", this.onOutHandler);
-
 	}
 	
 	
@@ -24,9 +24,9 @@ class Tooltip {
 	onOverHandler = (e) => {
 	  const tooltipAttr = e.target.dataset.tooltip;
 	  if (tooltipAttr) {
-	    this.render(tooltipAttr);
-			
-	    e.target.append(this.element);
+	    this.tooltipName = tooltipAttr;
+	    this.render();
+	    document.addEventListener("pointermove", this.onMoveHandler);				    
 	  }
 	}
 	
@@ -38,20 +38,26 @@ class Tooltip {
 		 	this.remove();
 	  }
 	}
-	
-	
+
+	onMoveHandler = (e) => {
+	  const shift = 10;
+	  let left = shift + e.clientX + 'px';
+	  let top = shift + e.clientY + 'px';
+		
+	  this.element.style.left = left;
+	  this.element.style.top = top;
+	}
 	
 	get template() {
-	  return `<div class="tooltip">${this.tooltip}</div>	`;
+	  return `<div class="tooltip">${this.tooltipName} 123</div>	`;
 	}
 	
-	render(tooltip) {
+	render() {
 	  const wrapper = document.createElement('div');
-	  wrapper.innerHTML = `<div class="tooltip">${tooltip}</div>	`;
+	  wrapper.innerHTML = this.template;
 	  this.element = wrapper.firstElementChild;
+	  document.body.append(this.element);
 	}
-	
-	
 	
 	
 	remove() {
