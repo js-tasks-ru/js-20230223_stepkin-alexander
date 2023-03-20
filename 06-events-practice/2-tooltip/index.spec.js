@@ -19,8 +19,7 @@ describe('events-practice/tooltip', () => {
   });
 
   it('should be rendered correctly', () => {
-    tooltip.render('');
-
+    tooltip.render('');		
     expect(tooltip.element).toBeVisible();
     expect(tooltip.element).toBeInTheDocument();
   });
