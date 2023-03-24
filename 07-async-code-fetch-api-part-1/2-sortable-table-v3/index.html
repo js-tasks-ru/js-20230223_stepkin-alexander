@@ -55,7 +55,11 @@
   ];
 
   const sortableTable = new SortableTable(header, {
-    url: 'api/rest/products'
+    url: 'api/rest/products',
+		sorted: {
+      id: header.find(item => item.sortable).id,
+      order: 'asc'
+    }
   });
 
   root.append(sortableTable.element);

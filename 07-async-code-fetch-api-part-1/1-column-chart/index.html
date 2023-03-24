@@ -36,7 +36,7 @@
 
       startInput.value = from.toISOString().split('T')[0];
       endInput.value = to.toISOString().split('T')[0];
-
+			
       const ordersChart = new ColumnChart({
         url: 'api/dashboard/orders',
         range: {
@@ -44,7 +44,7 @@
           to
         },
         label: 'orders',
-        link: '#'
+        link: '#',
       });
 
       loadOrders.addEventListener('click', () => {
@@ -58,7 +58,11 @@
           to
         },
         label: 'sales',
-        formatHeading: data => `$${data}`
+        formatHeading: data => `$${data}`,
+      });
+			
+			loadOrders.addEventListener('click', () => {
+        salesChart.update(new Date(start.value), new Date(end.value))
       });
 
       const customersChart = new ColumnChart({
@@ -68,6 +72,10 @@
           to
         },
         label: 'customers',
+      });
+			
+			loadOrders.addEventListener('click', () => {
+        customersChart.update(new Date(start.value), new Date(end.value))
       });
 
       orders.append(ordersChart.element);
