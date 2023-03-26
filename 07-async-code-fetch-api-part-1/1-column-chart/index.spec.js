@@ -31,13 +31,13 @@ describe('async-code-fetch-api-part-1/column-chart', () => {
     const from = new Date();
     const to = new Date();
     const data = await columnChart.update(from, to);
-		
     expect(data).toEqual(ordersData);
   });
 
   it('should render loaded data correctly', async () => {
     const { body } = columnChart.subElements;
     const expectedData = Object.values(ordersData);
+		
     const from = new Date();
     const to = new Date();
     await columnChart.update(from, to);

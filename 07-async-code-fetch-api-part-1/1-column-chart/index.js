@@ -108,6 +108,7 @@ export default class ColumnChart {
 	 * @returns data from server array
 	 */
   async loadData(from, to) {
+				
     this.url.searchParams.set("from", from.toISOString());
     this.url.searchParams.set("to", to.toISOString());
 		

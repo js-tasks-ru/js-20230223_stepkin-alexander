@@ -17,12 +17,13 @@ export default class SortableTable {
 	
 	constructor(headerConfig, {
 	  url = '',
+	  isSortLocally = true,
 	  sorted = {}
 	} = {}) {
 	  this.headerConfig = headerConfig;
 	  this.sorted = sorted;
 	  this.url = new URL(url, BACKEND_URL);
-	  this.isSortLocally = false;
+	  this.isSortLocally = isSortLocally;
 	  
 		
 	  this.render();
