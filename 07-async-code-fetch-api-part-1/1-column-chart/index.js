@@ -45,8 +45,7 @@ export default class ColumnChart {
 	
   getChartHeader(valluesArray) {
 		
-    const initialValue = 0;
-    this.value = valluesArray.reduce((acc, curValue) => acc + curValue, initialValue);
+    this.value = valluesArray.reduce((acc, curValue) => acc + curValue, 0);
 
     return this.formatHeading(this.value);
   }
@@ -112,8 +111,8 @@ export default class ColumnChart {
     this.url.searchParams.set("from", from.toISOString());
     this.url.searchParams.set("to", to.toISOString());
 		
-    const responce = await fetch(this.url);
-    const data = await responce.json();
+    const data = await fetchJson(this.url);
+    // const data = await responce.json();
     this.data = data;
 		
     return data;
