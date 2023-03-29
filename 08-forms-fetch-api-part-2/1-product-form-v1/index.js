@@ -193,6 +193,8 @@ export default class ProductForm {
 		
     // заполнили форму данными с сервера
     this.setForm();
+		
+    return this.element;
 
   }
   
@@ -336,10 +338,10 @@ export default class ProductForm {
     const fields = Object.keys(this.defaultFormData).filter(item => !excludedFields.includes(item));
     const getValue = field => productForm.querySelector(`[name=${field}]`).value;
     const values = {};
-
+		
+		
     for (const field of fields) {
       const value = getValue(field);
-
       values[field] = formatToNumber.includes(field)
         ? parseInt(value)
         : value;
