@@ -22,7 +22,7 @@ describe('routes-browser-history-api/dashboard-page', () => {
 
   it('should render bestsellers table', () => {
     const { sortableTable } = dashboardPage.subElements;
-
+		
     expect(sortableTable).toBeVisible();
     expect(sortableTable).toBeInTheDocument();
   });
