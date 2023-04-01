@@ -58,15 +58,20 @@
   import Page from './index.js';
 
   const contentNode = document.querySelector('#content');
-
+	
   async function initialize () {
+	
     const page = new Page();
     const element = await page.render();
 
     contentNode.innerHTML = '';
     contentNode.append(element);
-  }
+		
+	}
 
-  initialize();
+  initialize()
+	.then(() => document.querySelector('.progress-bar').style.display = 'none');
+	
+	
 </script>
 </body>
